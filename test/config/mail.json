@@ -1,0 +1,18 @@
+{
+    "key": "",
+    "secret": "",
+    "locale": "de_DE",
+    "senders": {
+        "default": {
+            "email": "info@vonaffenfels.de",
+            "name": "Test User"
+        }
+    },
+    "subjects": {
+        "default": "",
+        "user.register": "User Reg",
+        "user.reset": "User reset",
+        "user.login": "User login",
+        "user.activated": "User Activated"
+    }
+}
