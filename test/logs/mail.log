@@ -217,3 +217,31 @@
 26.01.2017 01:48:55 - info: [MAIL] Email for user.register sent
 26.01.2017 01:48:55 - info: [MAIL] Email for user.reset sent
 26.01.2017 01:48:55 - info: [MAIL] Email for user.activated sent
+26.01.2017 02:17:27 - debug: [MAIL] Initializing...
+26.01.2017 02:17:27 - error: [MAIL] Key not set
+26.01.2017 02:17:27 - error: [MAIL] Secret not set
+26.01.2017 02:17:27 - debug: [MAIL] Starting...
+26.01.2017 02:17:27 - info: [MAIL] Email for user.register sent
+26.01.2017 02:17:27 - info: [MAIL] Email for user.reset sent
+26.01.2017 02:17:27 - info: [MAIL] Email for user.activated sent
+26.01.2017 03:00:45 - debug: [MAIL] Initializing...
+26.01.2017 03:00:45 - error: [MAIL] Key not set
+26.01.2017 03:00:45 - error: [MAIL] Secret not set
+26.01.2017 03:00:45 - debug: [MAIL] Starting...
+26.01.2017 03:00:45 - info: [MAIL] Email for user.register sent
+26.01.2017 03:00:45 - info: [MAIL] Email for user.reset sent
+26.01.2017 03:00:45 - info: [MAIL] Email for user.activated sent
+26.01.2017 03:13:41 - debug: [MAIL] Initializing...
+26.01.2017 03:13:41 - error: [MAIL] Key not set
+26.01.2017 03:13:41 - error: [MAIL] Secret not set
+26.01.2017 03:13:41 - debug: [MAIL] Starting...
+26.01.2017 03:13:41 - info: [MAIL] Email for user.register sent
+26.01.2017 03:13:41 - info: [MAIL] Email for user.reset sent
+26.01.2017 03:13:41 - info: [MAIL] Email for user.activated sent
+26.01.2017 03:14:22 - debug: [MAIL] Initializing...
+26.01.2017 03:14:22 - error: [MAIL] Key not set
+26.01.2017 03:14:22 - error: [MAIL] Secret not set
+26.01.2017 03:14:22 - debug: [MAIL] Starting...
+26.01.2017 03:14:22 - info: [MAIL] Email for user.register sent
+26.01.2017 03:14:22 - info: [MAIL] Email for user.reset sent
+26.01.2017 03:14:22 - info: [MAIL] Email for user.activated sent

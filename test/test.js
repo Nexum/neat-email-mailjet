@@ -97,6 +97,18 @@ describe('Mail.send', function () {
         ])).to.throw(Error, /Recipient has no email set/i);
     });
 
+    it('should throw error for missing template in config', function () {
+        let mail = Application.modules.mail;
+
+        expect(mail.sendMail.bind(mail, "default", [
+            {
+                email: "test@test.com",
+                name: "blubb"
+            }
+        ], { template: "test"})
+        ).to.throw(Error, /No template id configured for test/i);
+    });
+
     it('should send email with minimal info', function () {
         const mail = Application.modules.mail;
         const requestSpy = {
@@ -143,7 +155,7 @@ describe('Mail.send', function () {
                 name: "blubb"
             }
         ], {
-            template: "templateID",
+            template: "default",
             text: "Textpart",
             html: "htmlpart",
             data: {test: true},
@@ -155,7 +167,7 @@ describe('Mail.send', function () {
             "Subject": "Betreff",
             "Text-part": "Textpart",
             "Html-part": "htmlpart",
-            "Mj-TemplateID": "templateID",
+            "Mj-TemplateID": "54321",
             "Vars": {test: true},
             "Recipients": [
                 {

@@ -21,6 +21,9 @@ module.exports = class EmailMailjet extends Module {
             },
             subjects: {
                 default: ""
+            },
+            templates: {
+                default: ""
             }
         }
     }
@@ -135,6 +138,10 @@ module.exports = class EmailMailjet extends Module {
             throw new Error("No sender configured for " + senderKey);
         }
 
+        if (options && options.template && !this.config.templates[options.template]) {
+            throw new Error("No template id configured for " + options.template);
+        }
+
         if (!recipients || !recipients.length) {
             throw new Error("Recipients not set or empty");
         }
@@ -160,7 +167,7 @@ module.exports = class EmailMailjet extends Module {
         let textPart = options.text || "";
         let htmlPart = options.html || "";
         let subject = options.subject || "";
-        let templateId = options.template || "";
+        let templateId = options.template ? this.config.templates[options.template] : "";
 
         return new Promise((resolve, reject) => {
 
@@ -179,10 +186,6 @@ module.exports = class EmailMailjet extends Module {
                     "Mj-TemplateID": templateId
                 })
                 .then(result => {
-                    if (result) {
-                        console.log(result.body);
-                    }
-
                     resolve();
                 })
                 .catch(err => {

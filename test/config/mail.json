@@ -14,5 +14,9 @@
         "user.reset": "User reset",
         "user.login": "User login",
         "user.activated": "User Activated"
+    },
+    "templates": {
+        "default": "54321",
+        "user.register": "12345"
     }
 }
