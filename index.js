@@ -88,6 +88,7 @@ module.exports = class EmailMailjet extends Module {
         Application.on(this.EVENT_USER_REGISTER, (data) => {
             const maildata = {
                 email: data.user.email,
+                token: data.user.activation.token,
                 name: data.user.username,
             };
 
@@ -103,6 +104,7 @@ module.exports = class EmailMailjet extends Module {
         Application.on(this.EVENT_USER_RESET, (data) => {
             const maildata = {
                 email: data.user.email,
+                token: data.user.reset.token,
                 name: data.user.username,
             };
 
@@ -178,6 +180,7 @@ module.exports = class EmailMailjet extends Module {
                 .request({
                     "FromEmail": fromEmail,
                     "FromName": fromName,
+                    "MJ-TemplateLanguage": true,
                     "Subject": subject,
                     "Text-part": textPart,
                     "Html-part": htmlPart,
