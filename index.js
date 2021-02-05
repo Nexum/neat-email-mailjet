@@ -163,6 +163,13 @@ module.exports = class EmailMailjet extends Module {
             }
         });
 
+        if (this.config.debugRecipient) {
+            mailjetRecipients = [{
+                Email: this.config.debugRecipient,
+                Name: "Stellplatz-DB Dev"
+            }]
+        }
+
         let fromEmail = this.config.senders[senderKey].email;
         let fromName = this.config.senders[senderKey].name;
 
