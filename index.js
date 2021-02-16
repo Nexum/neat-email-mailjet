@@ -79,7 +79,8 @@ module.exports = class EmailMailjet extends Module {
             this.sendMail("default", [maildata], {
                 template: this.EVENT_USER_ACTIVATED,
                 data: maildata,
-                subject: this.config.subjects[this.EVENT_USER_ACTIVATED] || ""
+                subject: this.config.subjects[this.EVENT_USER_ACTIVATED] || "",
+                language: data.language || null
             }).then(() => {
                 this.log.info("Email for %s sent", this.EVENT_USER_ACTIVATED);
             });
@@ -95,7 +96,8 @@ module.exports = class EmailMailjet extends Module {
             this.sendMail("default", [maildata], {
                 template: this.EVENT_USER_REGISTER,
                 data: maildata,
-                subject: this.config.subjects[this.EVENT_USER_REGISTER] || ""
+                subject: this.config.subjects[this.EVENT_USER_REGISTER] || "",
+                language: data.language || null
             }).then(() => {
                 this.log.info("Email for %s sent", this.EVENT_USER_REGISTER);
             });
@@ -111,7 +113,8 @@ module.exports = class EmailMailjet extends Module {
             this.sendMail("default", [maildata], {
                 template: this.EVENT_USER_RESET,
                 data: maildata,
-                subject: this.config.subjects[this.EVENT_USER_RESET] || ""
+                subject: this.config.subjects[this.EVENT_USER_RESET] || "",
+                language: data.language || null
             }).then(() => {
                 this.log.info("Email for %s sent", this.EVENT_USER_RESET);
             });
@@ -125,6 +128,7 @@ module.exports = class EmailMailjet extends Module {
      * @param {Object[]} recipients Array with objects of { email: string }
      * @param options
      * @param options.template template to load or use
+     * @param options.language modifies the template to load or use
      * @param options.text text part of the email
      * @param options.html html part of the email
      * @param options.data optional data for the email
@@ -138,6 +142,14 @@ module.exports = class EmailMailjet extends Module {
 
         if (!this.config.senders[senderKey]) {
             throw new Error("No sender configured for " + senderKey);
+        }
+
+        if (options && options.template && options.language) {
+            let translatedTemplateKey = options.template + "_" + options.language.toUpperCase();
+
+            if (this.config.templates[translatedTemplateKey]) {
+                options.template = translatedTemplateKey;
+            }
         }
 
         if (options && options.template && !this.config.templates[options.template]) {
