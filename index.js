@@ -150,6 +150,10 @@ module.exports = class EmailMailjet extends Module {
             if (this.config.templates[translatedTemplateKey]) {
                 options.template = translatedTemplateKey;
             }
+
+            if (this.config.subjects[translatedTemplateKey]) {
+                options.subject = this.config.subjects[translatedTemplateKey];
+            }
         }
 
         if (options && options.template && !this.config.templates[options.template]) {
