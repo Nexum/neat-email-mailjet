@@ -16,16 +16,16 @@ module.exports = class EmailMailjet extends Module {
             senders: {
                 default: {
                     email: "",
-                    name: ""
-                }
+                    name: "",
+                },
             },
             subjects: {
-                default: ""
+                default: "",
             },
             templates: {
-                default: ""
-            }
-        }
+                default: "",
+            },
+        };
     }
 
     init() {
@@ -45,7 +45,11 @@ module.exports = class EmailMailjet extends Module {
                 // return reject();
             }
 
-            this.client = Mailjet.connect(this.config.key, this.config.secret);
+            try {
+                this.client = Mailjet.connect(this.config.key, this.config.secret);
+            } catch (e) {
+                this.log.warn(e);
+            }
 
             this.registerEvents();
 
@@ -80,7 +84,7 @@ module.exports = class EmailMailjet extends Module {
                 template: this.EVENT_USER_ACTIVATED,
                 data: maildata,
                 subject: this.config.subjects[this.EVENT_USER_ACTIVATED] || "",
-                language: data.language || null
+                language: data.language || null,
             }).then(() => {
                 this.log.info("Email for %s sent", this.EVENT_USER_ACTIVATED);
             });
@@ -97,7 +101,7 @@ module.exports = class EmailMailjet extends Module {
                 template: this.EVENT_USER_REGISTER,
                 data: maildata,
                 subject: this.config.subjects[this.EVENT_USER_REGISTER] || "",
-                language: data.language || null
+                language: data.language || null,
             }).then(() => {
                 this.log.info("Email for %s sent", this.EVENT_USER_REGISTER);
             });
@@ -114,7 +118,7 @@ module.exports = class EmailMailjet extends Module {
                 template: this.EVENT_USER_RESET,
                 data: maildata,
                 subject: this.config.subjects[this.EVENT_USER_RESET] || "",
-                language: data.language || null
+                language: data.language || null,
             }).then(() => {
                 this.log.info("Email for %s sent", this.EVENT_USER_RESET);
             });
@@ -175,15 +179,17 @@ module.exports = class EmailMailjet extends Module {
 
             return {
                 Email: item.email,
-                Name: item.name
-            }
+                Name: item.name,
+            };
         });
 
         if (this.config.debugRecipient) {
-            mailjetRecipients = [{
-                Email: this.config.debugRecipient,
-                Name: "Stellplatz-DB Dev"
-            }]
+            mailjetRecipients = [
+                {
+                    Email: this.config.debugRecipient,
+                    Name: "Stellplatz-DB Dev",
+                },
+            ];
         }
 
         let fromEmail = this.config.senders[senderKey].email;
@@ -209,7 +215,7 @@ module.exports = class EmailMailjet extends Module {
                     "Html-part": htmlPart,
                     "Vars": vars,
                     "Recipients": mailjetRecipients,
-                    "Mj-TemplateID": templateId
+                    "Mj-TemplateID": templateId,
                 })
                 .then(result => {
                     resolve();
@@ -217,8 +223,8 @@ module.exports = class EmailMailjet extends Module {
                 .catch(err => {
                     this.log.error(err.statusCode);
                     reject(err.statusCode);
-                })
+                });
         });
     }
 
-}
+};
